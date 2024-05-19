@@ -1,0 +1,45 @@
+<p style="color: green"><%= notice %></p>
+<h1> a random card </h1>
+<% if @players.present? %>
+  <% random_player = @players.sample %>
+  <% other_random_player = @players.reject { |player| player == random_player }.sample %>
+  <p><%= random_player %> et <%= other_random_player %></p>
+<% else %>
+  <p>No players available</p>
+<% end %>
+<p> Penalities : <%= @penalities %>
+
+<div id="card-container" class="card-container fade-in">
+  <div>
+    <strong>Card Type:</strong> <span id="card-type"><%= @random_card.card_type %></span><br>
+    <strong>Title:</strong> <span id="card-title"><%= @random_card.title %></span><br>
+    <strong>Description:</strong> <span id="card-desc"><%= @random_card.desc.gsub("{p}", random_player).gsub("{op}", other_random_player).gsub("{x}", @penalities)%></span><br>
+    <strong>Group:</strong> <span id="card-group"><%= @random_card.group %></span><br>
+  </div>
+</div>
+
+
+<%= form_tag(cards_path, method: :get) do %>
+  <% if @players.present? %>
+    <% @players.each do |player| %>
+      <%= hidden_field_tag 'players[]', player %>
+    <% end %>
+  <% end %>
+  <%= submit_tag "Next Random Card", class: "btn btn-primary" %>
+<% end %>
+
+
+
+
+<% if @players.present? %>
+  <h2>Players</h2>
+  <ul>
+    <% @players.each do |player| %>
+      <li><%= player %></li>
+    <% end %>
+  </ul>
+<% end %>
+  
+  <%= link_to "New card", new_card_path %>
+
+  <%= render "import" %>
