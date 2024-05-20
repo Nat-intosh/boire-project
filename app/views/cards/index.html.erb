@@ -2,7 +2,6 @@
 <% if @players.present? %>
   <% random_player = @players.sample %>
   <% other_random_player = @players.reject { |player| player == random_player }.sample %>
-  <p><%= random_player %> et <%= other_random_player %></p>
 <% else %>
   <% random_player = 'playerone' %>
   <% other_random_player = 'playertwo'%>
@@ -11,9 +10,13 @@
 <div id="card-container" class="card-container fade-in">
   <div>
     <h2><span id="card-title"><%= @random_card.title %></span></h2><br>
+    <span id="card-desc"><%= @random_card.desc.gsub("{p}", random_player).gsub("{op}", other_random_player).gsub("{x}", @penalities)%></span><br>
     <strong>Card Type:</strong> <span id="card-type"><%= @random_card.card_type %></span><br>
-    <strong>Description:</strong> <span id="card-desc"><%= @random_card.desc.gsub("{p}", random_player).gsub("{op}", other_random_player).gsub("{x}", @penalities)%></span><br>
-    <strong>Group:</strong> <span id="card-group"><%= @random_card.group %></span><br>
+    <%
+=begin%>
+ <strong>Group:</strong> <span id="card-group"><%= @random_card.group %></span><br> 
+<%
+=end%>
   </div>
 </div>
 
@@ -24,21 +27,15 @@
       <%= hidden_field_tag 'players[]', player %>
     <% end %>
   <% end %>
-  <%= submit_tag "Next Random Card", class: "btn btn-primary" %>
+  <%= submit_tag "Next", class: "btn btn-primary" %>
 <% end %>
 
-
-
-
-<% if @players.present? %>
-  <h2>Players</h2>
-  <ul>
-    <% @players.each do |player| %>
-      <li><%= player %></li>
-    <% end %>
-  </ul>
-<% end %>
   
+  
+<%
+=begin%>
   <%= link_to "New card", new_card_path %>
+    <%= render "import" %>
+<%
+=end%>
 
-  <%= render "import" %>

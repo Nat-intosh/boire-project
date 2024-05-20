@@ -1,14 +1,21 @@
-<h1>Bienvenue sur jab mon reuf</h1>
-<%= link_to "Go to Cards", cards_path, class: "btn btn-primary" %>
+<div class="row">
+  <h1>Drinkonight</h1>
 
-<h2>Player List</h2>
-<ul id="player-list">
-  <!-- Player list will be dynamically populated by JavaScript -->
-</ul>
 
-<input type="text" id="pseudo-input" placeholder="Enter Player Pseudo">
-<button onclick="addPlayer()">Add Player</button>
-<button onclick="redirectToCards()">Go to Cards</button>
+  <h2>Le jeu qu'on oublie le lendemain</h2>
+  <div class="col">
+    <input type="text" id="pseudo-input" placeholder="Ajoute un joueur" class="form-control col-10">
+  </div>
+  <button onclick="addPlayer()" class="btn btn-primary col-1">+</button>
+  <div id="player-list">
+    <!-- Player list will be dynamically populated by JavaScript -->
+  </div>
+<button onclick="redirectToCards()" class="btn btn-primary">Commencer à boire</button>
+</div>
+
+
+
+
 
 <script>
   let players = [];
