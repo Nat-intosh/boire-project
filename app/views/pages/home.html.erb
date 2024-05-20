@@ -1,63 +1,77 @@
-<div class="row">
-  <h1>Drinkonight</h1>
-
-
-  <h2>Le jeu qu'on oublie le lendemain</h2>
-  <div class="col">
-    <input type="text" id="pseudo-input" placeholder="Ajoute un joueur" class="form-control col-10">
-  </div>
-  <button onclick="addPlayer()" class="btn btn-primary col-1">+</button>
-  <div id="player-list">
-    <!-- Player list will be dynamically populated by JavaScript -->
-  </div>
-<button onclick="redirectToCards()" class="btn btn-primary">Commencer à boire</button>
-</div>
-
-
-
-
-
-<script>
-  let players = [];
-
-  function addPlayer() {
-    const pseudoInput = document.getElementById("pseudo-input");
-    const pseudo = pseudoInput.value.trim();
-
-    if (pseudo) {
-      players.push(pseudo);
-      renderPlayerList();
-      pseudoInput.value = "";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drinkonight</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .start-button {
+      background-color: #DA6621;
+      border: none;
+      color: white;
+      width: 100%;
+      padding: 1rem;
+      margin-top: 2rem;
     }
-  }
 
-  function renderPlayerList() {
-    const playerList = document.getElementById("player-list");
-    playerList.innerHTML = "";
-    players.forEach((player, index) => {
-      const li = document.createElement("li");
-      li.textContent = player;
+  </style>
+</head>
+<body>
+  <div class="container text-center">
+    <h1>Drinktonight</h1>
+    <h2>Le jeu qu'on oublie le lendemain</h2>
+    <div class="form-inline">
+      <input type="text" id="pseudo-input" placeholder="Ajoute un joueur" class="form-control">
+      <button onclick="addPlayer()" class="btn btn-primary">+</button>
+    </div>
+    <div id="player-list" class="player-list d-flex flex-wrap list-unstyled">
+      <!-- Player list will be dynamically populated by JavaScript -->
+    </div>
+    <button onclick="redirectToCards()" class="btn btn-primary start-button">Commencer à boire <span class="material-symbols-outlined">arrow_forward</span></button>
+    <a href="#" class="admin-access">Accès admin</a>
+  </div>
 
-      const deleteButton = document.createElement("button");
-      deleteButton.textContent = "Delete";
-      deleteButton.onclick = () => deletePlayer(index); // Call deletePlayer function with index
+  <script>
+    let players = [];
 
-      li.appendChild(deleteButton);
-      playerList.appendChild(li);
-    });
-  }
+    function addPlayer() {
+      const pseudoInput = document.getElementById("pseudo-input");
+      const pseudo = pseudoInput.value.trim();
 
-  function deletePlayer(index) {
-    players.splice(index, 1); // Remove player at given index
-    renderPlayerList(); // Re-render player list
-  }
-
-  function redirectToCards() {
-    if (players.length >= 2) {
-      const playerParams = players.map(player => `players[]=${encodeURIComponent(player)}`).join("&");
-      window.location.href = `/cards?${playerParams}`;
-    } else {
-      alert("Please add at least two players before proceeding to the cards page.");
+      if (pseudo) {
+        players.push(pseudo);
+        renderPlayerList();
+        pseudoInput.value = "";
+      }
     }
-  }
-</script>
+
+    function renderPlayerList() {
+      const playerList = document.getElementById("player-list");
+      playerList.innerHTML = "";
+      players.forEach((player, index) => {
+        const li = document.createElement("li");
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = player + " X";
+        deleteButton.onclick = () => deletePlayer(index); // Call deletePlayer function with index
+        li.appendChild(deleteButton);
+        playerList.appendChild(li);
+      });
+    }
+
+    function deletePlayer(index) {
+      players.splice(index, 1); // Remove player at given index
+      renderPlayerList(); // Re-render player list
+    }
+
+    function redirectToCards() {
+      if (players.length >= 2) {
+        const playerParams = players.map(player => `players[]=${encodeURIComponent(player)}`).join("&");
+        window.location.href = `/cards?${playerParams}`;
+      } else {
+        alert("Please add at least two players before proceeding to the cards page.");
+      }
+    }
+  </script>
+</body>
+</html>
