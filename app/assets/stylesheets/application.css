@@ -23,6 +23,7 @@ h2 {
     font-weight: 300 !important;
     margin-bottom: 64px !important;
     align-self: flex-start;
+    text-align: left;
 }
 .container {
     height: 100%;
