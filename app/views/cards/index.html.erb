@@ -9,18 +9,20 @@
 
 <div id="card-container" class="card-container fade-in">
   <div>
-    <h1><span id="card-title"><%= @random_card.title %></span></h1><br>
+    <h1><span id="card-emoji"><%= emoji_for_card_type(@random_card.card_type) %></span><br><span id="card-title"><%= @random_card.title %></span></h1><br>
     <h2><span id="card-desc"><%= @random_card.desc.gsub("{p}", random_player).gsub("{op}", other_random_player).gsub("{x}", @penalities)%></span></h2><br>
-    <strong>Card Type:</strong> <span id="card-type"><%= @random_card.card_type %></span><br>
-    <%
+
+
+<%
 =begin%>
  <strong>Group:</strong> <span id="card-group"><%= @random_card.group %></span><br> 
 <%
 =end%>
+
   </div>
 </div>
 
-
+<div class="fade-in">
 <%= form_tag(cards_path, method: :get) do %>
   <% if @players.present? %>
     <% @players.each do |player| %>
@@ -29,6 +31,7 @@
   <% end %>
   <%= submit_tag "Next", class: "btn btn-primary start-button" %>
 <% end %>
+</div>
 <a href="/" class="admin-access">Retour à l'accueil</a>
   
   
