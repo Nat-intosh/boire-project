@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Drinkonight</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <%
+=begin%>
+ <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> 
+<%
+=end%>
   <style>
     .start-button {
       background-color: #DA6621;
@@ -18,7 +22,7 @@
   </style>
 </head>
 <body>
-  <div class="container text-center">
+  <div id="content" class="container text-center">
     <h1>Drinktonight</h1>
     <h2>Le jeu qu'on oublie le lendemain</h2>
     <div class="form-inline">
@@ -66,8 +70,13 @@
 
     function redirectToCards() {
       if (players.length >= 2) {
-        const playerParams = players.map(player => `players[]=${encodeURIComponent(player)}`).join("&");
-        window.location.href = `/cards?${playerParams}`;
+        const content = document.getElementById("content");
+        content.classList.add("slide-out-left");
+
+        setTimeout(() => {
+          const playerParams = players.map(player => `players[]=${encodeURIComponent(player)}`).join("&");
+          window.location.href = `/cards?${playerParams}`;
+        }, 500); // Wait for the animation to complete
       } else {
         alert("Please add at least two players before proceeding to the cards page.");
       }
