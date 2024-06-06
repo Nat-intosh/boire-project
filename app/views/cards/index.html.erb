@@ -2,16 +2,17 @@
 <% if @players.present? %>
   <% random_player = @players.sample %>
   <% other_random_player = @players.reject { |player| player == random_player }.sample %>
+  <% other_other_random_player = @players.reject { |player| player == random_player || player == other_random_player }.sample %>
 <% else %>
   <% random_player = 'playerone' %>
   <% other_random_player = 'playertwo'%>
+  <% other_other_random_player ='playerthree'%>
 <% end %>
 
 <div id="card-container" class="card-container fade-in">
   <div>
     <h1><span id="card-emoji"><%= emoji_for_card_type(@random_card.card_type) %></span><br><span id="card-title"><%= @random_card.title %></span></h1><br>
-    <h2><span id="card-desc"><%= @random_card.desc.gsub("{p}", random_player).gsub("{op}", other_random_player).gsub("{x}", @penalities)%></span></h2><br>
-
+    <h2><span id="card-desc"><%= @random_card.desc.gsub("{p}", random_player).gsub("{op}", other_random_player).gsub("{x}", @penalities).gsub("{oop}", other_other_random_player).gsub("{rm}", @rm )%></span></h2><br>
 
 <%
 =begin%>

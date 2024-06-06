@@ -7,6 +7,9 @@ class CardsController < ApplicationController
     @random_card = Card.order("RANDOM()").first
     @players = params[:players] || []
     @penalities =  (rand(2..5)).to_s
+    @randomword = RandomWord.order("RANDOM()").first
+    @rm = @randomword.word
+
   end
 
   def next_random_card
@@ -15,6 +18,8 @@ class CardsController < ApplicationController
     @random_card = Card.order("RANDOM()").first
     @players = params[:players] || []
     @penalities = rand(2..5)
+
+ 
 
     respond_to do |format|
       format.js

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @random_word %>
+
+<div>
+  <%= link_to "Edit this random word", edit_random_word_path(@random_word) %> |
+  <%= link_to "Back to random words", random_words_path %>
+
+  <%= button_to "Destroy this random word", @random_word, method: :delete %>
+</div>

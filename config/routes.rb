@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :random_words
   root 'pages#home'
-  resources :cards do
+  resources :cards, :random_words do
   collection do 
     post :import
   end
