@@ -22,6 +22,8 @@
   </style>
 </head>
 <body>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
   <div id="content" class="container text-center">
     <h1>Be Drunk</h1>
     <h2>Le jeu qu'on oublie le lendemain</h2>
@@ -33,7 +35,8 @@
       <!-- Player list will be dynamically populated by JavaScript -->
     </div>
     <button onclick="redirectToCards()" class="btn btn-primary start-button">Commencer à boire <span class="material-symbols-outlined">arrow_forward</span></button>
-    <a href="#" class="admin-access">Accès admin</a>
+    <%= link_to 'Accès admin', new_user_session_path, class: '' %>
+
   </div>
 
   <script>

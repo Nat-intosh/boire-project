@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :random_words
   root 'pages#home'
   resources :cards, :random_words do
