@@ -36,10 +36,15 @@
     </div>
     <button onclick="redirectToCards()" class="btn btn-primary start-button">Commencer à boire <span class="material-symbols-outlined">arrow_forward</span></button>
     <%= link_to 'Accès admin', new_user_session_path, class: 'admin-access' %>
-    <% if user_signed_in? %> 
-      <div> Bienvenue <%= current_user.email %>, nous sommes heureux de te voir</div> 
-      <%= button_to  "Se déconnecter", destroy_user_session_path, method: :delete, class:"btn btn-outline-success me-2 my-2 my-lg-0 end" %> 
-    <% end %>
+    <div class="signed-in">
+      <% if user_signed_in? %> 
+        <div> Bienvenue <%= current_user.email %>, nous sommes heureux de te voir</div> 
+        <%= button_to  "Se déconnecter", destroy_user_session_path, method: :delete, class:"btn btn-outline-success me-2 my-2 my-lg-0 end" %> 
+        <% if current_user.try(:admin?) %>
+          <a href="/admin/" class="btn btn-outline-success me-2 my-2 my-lg-0 end">Panel admin</a>
+        <% end %>
+      <% end %>
+    </div>
 
   </div>
 
