@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :cards
+      resources :random_words
+      resources :users
+
+      root to: "cards#index"
+    end
   devise_for :users
   resources :random_words
   root 'pages#home'
