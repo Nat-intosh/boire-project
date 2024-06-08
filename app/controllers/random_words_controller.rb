@@ -1,5 +1,7 @@
 class RandomWordsController < ApplicationController
   before_action :set_random_word, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  before_action :require_admin, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /random_words or /random_words.json
   def index
@@ -66,5 +68,11 @@ class RandomWordsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def random_word_params
       params.require(:random_word).permit(:word)
+    end
+
+    def require_admin
+      unless current_user.admin?
+        redirect_to root_path, alert: 'You are not authorized to perform this action.'
+      end
     end
 end

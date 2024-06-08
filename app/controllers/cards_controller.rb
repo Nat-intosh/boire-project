@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_card, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :destroy, :import]
+  before_action :require_admin, only: [:new, :create, :show, :edit, :update, :destroy, :import]
   # GET /cards or /cards.json
   def index
     @cards = Card.all
@@ -96,5 +97,11 @@ class CardsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def card_params
       params.require(:card).permit(:card_type, :title, :desc, :group)
+    end
+
+    def require_admin
+      unless current_user.admin?
+        redirect_to root_path, alert: 'You are not authorized to perform this action.'
+      end
     end
 end
