@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :random_words
   root 'pages#home'
+  get 'legal', to: 'pages#legal'
   resources :cards, :random_words do
   collection do 
     post :import

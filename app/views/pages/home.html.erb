@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Drinkonight</title>
+  <title>BeDrunk</title>
   <%
 =begin%>
  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> 
@@ -36,6 +36,7 @@
     </div>
     <button onclick="redirectToCards()" class="btn btn-primary start-button">Commencer à boire <span class="material-symbols-outlined">arrow_forward</span></button>
     <%= link_to 'Accès admin', new_user_session_path, class: 'admin-access' %>
+    <%= link_to 'Crédits, Mentions légales, CGU & RGPD', legal_path, class: 'admin-access' %>
     <div class="signed-in">
       <% if user_signed_in? %> 
         <div> Bienvenue <%= current_user.email %>, nous sommes heureux de te voir</div> 

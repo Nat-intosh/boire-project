@@ -3,30 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Drinkonight</title>
-  <%
-=begin%>
- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> 
-<%
-=end%>
-  <style>
-    .start-button {
-      background-color: #DA6621;
-      border: none;
-      color: white;
-      width: 100%;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
-  </style>
+  <title>BeDrunk</title>
 </head>
+<style>
+.container {
+    justify-content:start !important;
+}
+
+h2{
+    font-weight: 600!important;
+    font-size: 32px !important;
+}
+</style>
 <body>
+<div class="container flex-start">
+<%= link_to "Retour à l'accueil", root_path, class: 'admin-access' %>
 
 <h1>Légal</h1><br>
 <h2>Crédits</h2>
 Questions, reflexion et concept : Owen Michalowski--Beaujean & Nathan Vandaele
 Développement, technique et design : Nathan Vandaele
+
+<h2> Ce projet est open-source </h2>
+Vous trouverez tout le code de l'application sur Github
 <h2>Mention légales </h2>
                 <h3><strong>Identification : </h3></strong>BeDrunk est un jeu de soirée<br>
                 
@@ -54,7 +53,7 @@ Développement, technique et design : Nathan Vandaele
                 </p>
                 <br> <br>
 <h2> Conditions générales d'utilisation </h2>
-                <h1>Conditions Générales d'Utilisation</h1>
+                
                     Veuillez prendre connaissance des informations qui suivent. Tout visiteur ou personne inscrite sur notre application web est invité à lire attentivement les conditions générales d’utilisation ci-dessous.
 
                     <h3>Objet :</h3>
@@ -156,6 +155,6 @@ Développement, technique et design : Nathan Vandaele
                 <br>Les cookies collectés par BeDrunk permettent de récupérer des informations sur les utilisateurs et ainsi, d’améliorer l’expérience utilisateur. Nous ne récoltons aucune donnée sans votre consentement, c’est pourquoi, toute utilisation de cookie fera l’objet d’une demande au préalable dès votre arrivée sur le site.
 
                 </p>
-
+</div>
 </body>
 </html>
