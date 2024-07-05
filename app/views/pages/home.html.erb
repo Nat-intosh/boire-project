@@ -82,7 +82,7 @@
     }
 
     function redirectToCards() {
-      if (players.length >= 2) {
+      if (players.length >= 3) {
         const content = document.getElementById("content");
         content.classList.add("slide-out-left");
 
@@ -91,7 +91,7 @@
           window.location.href = `/cards?${playerParams}`;
         }, 500); // Wait for the animation to complete
       } else {
-        alert("Please add at least two players before proceeding to the cards page.");
+        alert("Please add at least three players before proceeding to the cards page.");
       }
     }
   </script>
